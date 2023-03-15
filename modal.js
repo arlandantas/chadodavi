@@ -25,4 +25,4 @@ function getModalBackdrop() {
     return backdrop;
 }
 
-showModal('invite-code-modal')
+// showModal('invite-code-modal')
