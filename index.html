@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chá do Davi</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              azul: "#0097B2",
+              marrom: "#BB6E58",
+            },
+            fontFamily: {
+              sans: ["League Spartan", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+      }
+      .bkg {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+      }
+      #bkg_pattern {
+        background-image: url(./toys_pattern.avif);
+        background-size: 1000px auto;
+        z-index: -2;
+      }
+      #bkg_gradient {
+        z-index: -1;
+        background: linear-gradient(180deg, #fffe 0%, #fffb 100%);
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="bkg_gradient" class="bkg"></div>
+    <div id="bkg_pattern" class="bkg"></div>
+    <div class="container sm:w-full md:w-4/5 mx-auto lg:w-3/5 h-screen">
+      <div
+        class="text-azul container mx-auto grid md:grid-cols-2 gap-2 place-items-center items-center content-center min-h-full lg:text-lg xl:text-xl"
+      >
+        <img
+          class="col-span-2 h-32 max-md:h-28"
+          src="./header.png"
+          alt="Logo do Chá"
+        />
+        <img
+          class="p-4 w-98 max-md:w-80 max-sm:col-span-2"
+          src="./Cha do Davi transparent.png"
+          alt="Logo do Chá"
+        />
+        <img
+          class="md:row-span-4 md:w-48 lg:w-56 max-sm:hidden sm:w-32"
+          src="./baby.png"
+          alt="Logo do Chá"
+        />
+        <div
+          class="text-marrom self-end md:justify-self-start max-md:col-span-2"
+        >
+          5 de maio, 19h
+        </div>
+        <div class="md:justify-self-start max-md:col-span-2">
+          Trazer: Pacote de Fraldas + Mimo
+        </div>
+        <div
+          class="text-marrom self-start md:justify-self-start md:text-left max-md:col-span-2"
+        >
+          Cond. Res. Nova América<br />R. Dr. Amaro Ienaga, 290 - Pajuçara
+        </div>
+        <div class="col-span-2 mt-4">
+          <button
+            class="px-4 py-2 bg-azul text-white rounded-md"
+            onclick="showModal('invite-code-modal')"
+          >
+            Confirmar presença
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="relative z-10 hidden"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+      id="invite-code-modal"
+    >
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div
+          class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+        >
+          <div
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+          >
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:w-full">
+                <div class="text-center">
+                  <h3
+                    class="text-base font-semibold leading-6 text-gray-900"
+                    id="modal-title"
+                  >
+                    Confirmar Presença
+                  </h3>
+                  <div class="mt-4">
+                    <p class="text-sm text-gray-500">
+                      Código Recebido dos pais:
+                    </p>
+                  </div>
+                  <input type="text" id="txt-code">
+                  <div class="mt-4">
+                    <p class="text-sm text-gray-500">
+                      Quantidade de pessoas:
+                    </p>
+                  </div>
+                  <input type="number" id="txt-qty" min="0">
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+            >
+              <button
+                onclick="validateCode()"
+                type="button"
+                class="inline-flex w-full justify-center rounded-md bg-azul px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+              >
+                Validar
+              </button>
+              <button
+                onclick="hideModal('invite-code-modal')"
+                type="button"
+                class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
