@@ -52,7 +52,7 @@
     <div id="bkg_pattern" class="bkg"></div>
     <div class="container sm:w-full md:w-4/5 mx-auto lg:w-3/5 h-screen">
       <div
-        class="text-azul container mx-auto grid md:grid-cols-2 gap-2 place-items-center items-center content-center min-h-full lg:text-lg xl:text-xl"
+        class="text-azul container mx-auto grid md:grid-cols-2 gap-2 place-items-center items-center content-center min-h-full"
       >
         <img
           class="col-span-2 h-32 max-md:h-28"
@@ -104,7 +104,7 @@
           class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
         >
           <div
-            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 max-sm:w-full sm:max-w-lg"
           >
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:w-full">
@@ -158,17 +158,23 @@
           class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
         >
           <div
-            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 max-sm:w-full sm:max-w-lg"
           >
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:w-full">
                 <div class="text-center">
                   <h3
-                    class="text-base font-semibold leading-6 text-gray-900"
+                    class="text-base text-gray-900"
                     id="modal-title"
                   >
                     Confirmar Presença/ausência
                   </h3>
+                  <div class="mt-4">
+                    <p>
+                      Olá, <span id="nomes"></span>!<br/>
+                      Você deverá levar fraldas tamanho <b id="tamanho"></b> + mimo, certo?
+                    </p>
+                  </div>
                   <div class="mt-4 hidden only-multiple">
                     <p class="text-sm text-gray-500">
                       Quantidade de pessoas:
@@ -189,7 +195,7 @@
                 Confirmar Presença
               </button>
               <button
-                id="bt-validate"
+                id="bt-confirm-absence"
                 type="button"
                 class="inline-flex sm:mt-0 sm:w-auto mt-3 w-full justify-center rounded-md bg-marrom px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
               >
@@ -201,6 +207,52 @@
                 class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
               >
                 Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="relative z-10 hidden"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+      id="confirm-message-modal"
+    >
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div
+          class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+        >
+          <div
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 max-sm:w-full sm:max-w-lg"
+          >
+            <div class="bg-white px-4 pt-5 sm:p-6 sm:pb-4">
+              <div class="sm:w-full">
+                <div class="text-center">
+                  <h3
+                    class="text-base text-gray-900"
+                    id="modal-title"
+                  >
+                    Muito obrigado por confirmar sua <span id="confirm-type"></span>!
+                  </h3>
+                  <div class="mt-4 hidden only-presence text-gray-500">
+                    <p>
+                      Lembre-se que sua fralda deve ser do tamanho <span id="confirm-size"></span>!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+            >
+              <button
+                onclick="hideModal('confirm-message-modal')"
+                type="button"
+                class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+              >
+                Pronto
               </button>
             </div>
           </div>
