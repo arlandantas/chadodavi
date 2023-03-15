@@ -1,3 +1,5 @@
+
+
 function showModal(modalId) {
     getModalBackdrop();
     const modal = document.querySelector(`#${modalId}`);
@@ -21,11 +23,6 @@ function getModalBackdrop() {
     backdrop.classList.value = 'fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity';
     document.querySelector("body").appendChild(backdrop);
     return backdrop;
-}
-
-function validateCode() {
-    let code = document.querySelector(`#txt-code`).value;
-    alert("Validating: "+code);
 }
 
 showModal('invite-code-modal')

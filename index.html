@@ -87,7 +87,7 @@
             class="px-4 py-2 bg-azul text-white rounded-md"
             onclick="showModal('invite-code-modal')"
           >
-            Confirmar presença
+            Confirmar Presença/Ausência
           </button>
         </div>
       </div>
@@ -113,20 +113,14 @@
                     class="text-base font-semibold leading-6 text-gray-900"
                     id="modal-title"
                   >
-                    Confirmar Presença
+                    Confirmar Presença/ausência
                   </h3>
                   <div class="mt-4">
                     <p class="text-sm text-gray-500">
                       Código Recebido dos pais:
                     </p>
                   </div>
-                  <input type="text" id="txt-code">
-                  <div class="mt-4">
-                    <p class="text-sm text-gray-500">
-                      Quantidade de pessoas:
-                    </p>
-                  </div>
-                  <input type="number" id="txt-qty" min="0">
+                  <input type="text" id="txt-code" class="w-full">
                 </div>
               </div>
             </div>
@@ -134,7 +128,7 @@
               class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
             >
               <button
-                onclick="validateCode()"
+                id="bt-validate"
                 type="button"
                 class="inline-flex w-full justify-center rounded-md bg-azul px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
               >
@@ -152,6 +146,68 @@
         </div>
       </div>
     </div>
-    <script src="./index.js"></script>
+    <div
+      class="relative z-10 hidden"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+      id="confirm-decline-modal"
+    >
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div
+          class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+        >
+          <div
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+          >
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:w-full">
+                <div class="text-center">
+                  <h3
+                    class="text-base font-semibold leading-6 text-gray-900"
+                    id="modal-title"
+                  >
+                    Confirmar Presença/ausência
+                  </h3>
+                  <div class="mt-4 hidden only-multiple">
+                    <p class="text-sm text-gray-500">
+                      Quantidade de pessoas:
+                    </p>
+                  </div>
+                  <select id="slct-qty" class="hidden only-multiple w-full"></select>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+            >
+              <button
+                id="bt-confirm"
+                type="button"
+                class="inline-flex w-full justify-center rounded-md bg-azul px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+              >
+                Confirmar Presença
+              </button>
+              <button
+                id="bt-validate"
+                type="button"
+                class="inline-flex sm:mt-0 sm:w-auto mt-3 w-full justify-center rounded-md bg-marrom px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+              >
+                Confirmar Ausência
+              </button>
+              <button
+                onclick="hideModal('confirm-decline-modal')"
+                type="button"
+                class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./modal.js"></script>
+    <script type="module" src="./index.mjs"></script>
   </body>
 </html>
