@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js'
 // import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
 // import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
-import { getFirestore, collection, setDoc, getDocs, doc, where, query, Timestamp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js'
+import { getFirestore, collection, addDoc, setDoc, getDocs, doc, where, query, Timestamp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -47,7 +47,7 @@ async function validateCode() {
         slctQty.appendChild(option)
       }
       slctQty.value = 1
-      document.querySelector("#nomes").textContent = doc.names
+      document.querySelector("#nomes").textContent = doc.name
       document.querySelector("#tamanho").textContent = doc.size
       document.querySelectorAll(".only-multiple").forEach(e => e.classList.toggle("hidden", !hasMany))
       document.querySelectorAll(".not-multiple").forEach(e => e.classList.toggle("hidden", hasMany))
@@ -79,8 +79,8 @@ async function confirm(qty, button) {
     const isPresence = qty > 0
     button.disabled = true
     await updateCurrentDoc(qty)
-    document.querySelector("#confirm-type").textContent = isPresence ? 'Presença' : 'Ausência'
     document.querySelector("#confirm-size").textContent = currentInvite.size
+    document.querySelectorAll(".only-absence").forEach(e => e.classList.toggle("hidden", isPresence))
     document.querySelectorAll(".only-presence").forEach(e => e.classList.toggle("hidden", !isPresence))
     hideModal('confirm-decline-modal')
     showModal('confirm-message-modal')
@@ -93,3 +93,49 @@ async function confirm(qty, button) {
 
 btConfirm.onclick = () => confirm(slctQty.value, btConfirm)
 btConfirmAbsence.onclick = () => confirm(0, btConfirmAbsence)
+
+// const insertStr = `Manoilly	Manu e Júnior	2	P
+// Rafaela	Rafa	1	P
+// LeticiaF	Letícia e Samuel	2	P
+// Livia	Lívia	1	P
+// Suely	Sueli e Washigton	2	P
+// LeticiaM	Letícia	1	M
+// Larissa	Larissa	1	M
+// Jaqueline	Jaqueline	1	M
+// Lys	Lys e Misael	2	M
+// Miriam	Miriam e Rodolfo	2	M
+// Nilda	Nilda	1	G
+// Thalita	Thalita e Messias	2	G
+// Samara	Samara e Lucas	2	G
+// Rohdriggo	Rohdriggo	1	G
+// Marlucia	Marlúcia e Melquíades	2	G
+// Marlene	Marlene	1	G
+// Salete	Salete e Josa	2	G
+// Valquiria	Valquíria, Bal e Juju	3	GG
+// Lyla	Lyla e Dori	2	GG
+// Ana	Ana e Fábio	2	GG
+// Paulinha	Paulinha e Kaká	2	GG
+// Gabriela	Gaby	1	GG
+// Marleide	Marleide	1	GG
+// Debora	Debynha, Cielino, Daniel e Bia	4	GG
+// Laise	Laíse e André	2	GG
+// Marli	Marli e Marinaldo	2	GG
+// Francisca	Francisca	1	GG
+// Raimunda	Ramunda, Ákila e Netinho	3	GG
+// Lauriana	Lauriana	1	GG
+// PriscilaeAna	Priscila e Ana Maria	1	GG
+// Luana	Luana	1	RN
+// Keyla	Keyla	1	RN`
+
+// const data = insertStr.split("\n")
+//   .map(e => e.split("\t"))
+//   .map(([ code, name, qty, size ]) => ({
+//     code: code.toLocaleLowerCase(),
+//     name,
+//     qty: parseInt(qty),
+//     size
+//   }))
+
+// data.forEach(async (item) => {
+//   console.log("document inserted", await addDoc(getInviteCollection(), item))
+// })
