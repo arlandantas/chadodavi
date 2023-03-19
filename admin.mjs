@@ -188,7 +188,7 @@ const deleteInvite = async (tr) => {
 const showInviteLink = (tr) => {
   const invite = getInviteFromTr(tr);
   if (tr.id !== 'invite-new') {
-    navigator.clipboard.writeText(`https://arlandantas.github.io/chadodavi.github.io?code=${invite.code}`);
+    navigator.clipboard.writeText(`https://arlandantas.github.io/chadodavi?code=${invite.code}`);
     alert("O link do convite foi copiado com sucesso!");
   }
 };
