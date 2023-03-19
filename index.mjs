@@ -45,7 +45,7 @@ async function loadCode(code) {
         option.textContent = i+1
         slctQty.appendChild(option)
       }
-      slctQty.value = 1
+      slctQty.value = doc.qty
       document.querySelector("#nomes").textContent = doc.name
       document.querySelector("#tamanho").textContent = doc.size
       document.querySelectorAll(".only-multiple").forEach(e => e.classList.toggle("hidden", !hasMany))
