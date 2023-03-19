@@ -22,7 +22,7 @@
       };
     </script>
     <style>
-      * {
+      body {
         text-transform: uppercase;
         font-weight: bold;
         text-align: center;
@@ -65,30 +65,44 @@
           alt="Logo do Chá"
         />
         <img
-          class="md:row-span-4 md:w-48 lg:w-56 max-sm:hidden sm:w-32"
+          class="md:row-span-2 md:w-48 lg:w-56 max-sm:hidden sm:w-32"
           src="./baby.png"
           alt="Logo do Chá"
         />
-        <div
-          class="text-marrom self-end md:justify-self-start max-md:col-span-2"
-        >
-          5 de maio, 19h
-        </div>
-        <div class="md:justify-self-start max-md:col-span-2">
-          Trazer: Pacote de Fraldas + Mimo
-        </div>
-        <div
-          class="text-marrom self-start md:justify-self-start md:text-left max-md:col-span-2"
-        >
-          Cond. Res. Nova América<br />R. Dr. Amaro Ienaga, 290 - Pajuçara
+        <div class="max-md:col-span-2">
+          <div class="only-invited hidden md:text-left">
+            <div class="text-marrom">
+              5 de maio, 19h
+            </div>
+            <div>
+              Trazer: Pacote de Fraldas + Mimo
+            </div>
+            <div class="text-marrom">
+              Cond. Res. Nova América<br />R. Dr. Amaro Ienaga, 290 - Pajuçara
+            </div>
+          </div>
+          <div class="only-generic hidden md:text-left">
+            <div class="text-marrom">
+              Esse é um convite simbólico...
+            </div>
+            <div class="md:text-left">
+              Infelizmente, tivemos que reduzir a festa presencial.
+            </div>
+            <div class="text-marrom">
+              Mas sabemos do carinho que você tem por nós e não esquecemos de você!
+            </div>
+          </div>
         </div>
         <div class="col-span-2 mt-4">
           <button
-            class="px-4 py-2 bg-azul text-white rounded-md"
-            onclick="showModal('invite-code-modal')"
+            class="px-4 py-2 bg-azul text-white rounded-md hidden only-invited"
+            id="bt-invite-modal"
           >
             Confirmar Presença/Ausência
           </button>
+        </div>
+        <div class="col-span-2 mt-4" id="loading">
+          Carregando...
         </div>
       </div>
     </div>

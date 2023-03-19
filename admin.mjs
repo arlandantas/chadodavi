@@ -186,8 +186,11 @@ const deleteInvite = async (tr) => {
 };
 
 const showInviteLink = (tr) => {
-  // alert(`Getting link... ${tr.querySelector('.txt-id').value}`);
-  alert(`Funcionalidade em desenvolvimento...`);
+  const invite = getInviteFromTr(tr);
+  if (tr.id !== 'invite-new') {
+    navigator.clipboard.writeText(`https://arlandantas.github.io/chadodavi.github.io?code=${invite.code}`);
+    alert("O link do convite foi copiado com sucesso!");
+  }
 };
 
 const getConfirmOrder = ({ confirmed }) => {
@@ -222,15 +225,7 @@ const reorderTable = () => {
         reorderItems();
         continue;
       }
-      // if (siSizeIndex < piSizeIndex) {
-      //   continue;
-      // }
-      // if (siSizeIndex > piSizeIndex) {
-      //   reorderItems();
-      //   continue;
-      // }
       if (`${primaryInvite.code}`.localeCompare(`${secondaryInvite.code}`) === -1) {
-        console.log("Reordering codes", primaryInvite.code, secondaryInvite.code)
         reorderItems();
       }
     }
