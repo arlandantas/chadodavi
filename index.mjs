@@ -95,13 +95,15 @@ async function startup() {
   const CODE_QUERY_PARAM_KEY = "code";
   const url = new URL(window.location.href);
   const code = url.searchParams.get(CODE_QUERY_PARAM_KEY);
-  if (code) {
-    url.searchParams.delete(CODE_QUERY_PARAM_KEY);
-    window.history.pushState({}, document.title, url.href);
+  if (code === 'social') {
+    document.querySelectorAll(".only-social").forEach(elmt => elmt.classList.remove("hidden"))
+  } else if (code) {
+    // url.searchParams.delete(CODE_QUERY_PARAM_KEY);
+    // window.history.pushState({}, document.title, url.href);
     await loadCode(code);
     document.querySelectorAll(".only-invited").forEach(elmt => elmt.classList.remove("hidden"))
   } else {
-    document.querySelectorAll(".only-generic").forEach(elmt => elmt.classList.remove("hidden"))
+    document.querySelectorAll(".only-invalid").forEach(elmt => elmt.classList.remove("hidden"))
   }
   document.querySelector("#loading").classList.add("hidden")
 }
